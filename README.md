@@ -1,3 +1,8 @@
+# REQUIREMENTS
+
+* Python3
+* Docker CLI
+
 # SETUP
 
 ### Quick Setup
