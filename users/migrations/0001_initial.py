@@ -18,5 +18,8 @@ class Migration(migrations.Migration):
                 ('email', models.CharField(max_length=60)),
                 ('password', models.CharField(max_length=120)),
             ],
+            options={
+                'db_table': 'user',
+            }
         ),
     ]

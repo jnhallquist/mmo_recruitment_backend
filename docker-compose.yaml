@@ -1,0 +1,41 @@
+version: '3.0'
+services:
+  db:
+    image: 'postgres:12.2'
+    environment:
+      POSTGRES_DB: ${MMO_RECRUITMENT_DB_NAME}
+      POSTGRES_USER: ${MMO_RECRUITMENT_DB_USERNAME}
+      POSTGRES_PASSWORD: ${MMO_RECRUITMENT_DB_PASSWORD}
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - db
+
+  pgadmin:
+    image: 'dpage/pgadmin4'
+    environment:
+      POSTGRES_DB: ${MMO_RECRUITMENT_DB_NAME}
+      POSTGRES_USER: ${MMO_RECRUITMENT_DB_USERNAME}
+      POSTGRES_PASSWORD: ${MMO_RECRUITMENT_DB_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-makoto@mmo.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-makoto}
+    volumes:
+       - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - db
+    depends_on:
+      - db
+    tty: true
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
+    driver: local
+  pgadmin:

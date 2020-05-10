@@ -1,0 +1,19 @@
+env/
+node_modules/
+
+.vscode
+.boto
+*.pyc
+*.pb
+*.h5
+__pycache__/
+*.swp
+nohup.out
+hs_err_pid*
+*~
+*.bkup
+*.orig
+
+# ---- Mac OS X
+.DS_Store
+.DS_Store?
